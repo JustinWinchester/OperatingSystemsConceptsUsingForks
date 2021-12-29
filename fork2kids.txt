@@ -1,0 +1,31 @@
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+
+int main()
+{
+
+	int pid;
+	int i;
+	char comm[20];
+
+	for(i=0; i < 2; i++)
+	{
+		pid = fork();
+	
+		if( pid == 0 )
+		{
+			printf("\nEnter your command: ");
+			scanf("%s", comm);
+			comm[strlen(comm)] = '\0';	
+			system(comm);
+		}else{
+			wait();
+			_exit(0);
+		}
+	}
+
+
+	exit(0);
+}
